@@ -1,25 +1,36 @@
-class Pessoa:
-    def __init__(self, id_pessoa: int = None, nome: str = None, cpf: str = None, telefone: str = None, email: str = None) -> None:
-        self.set_id_pessoa(id_pessoa)
-        self.set_nome(nome)
-        self.set_cpf(cpf)
-        self.set_telefone(telefone)
-        self.set_email(email)
+from src.utils.validador import Validador
 
-    def set_id_pessoa(self, id_pessoa: int):
+class Pessoa:
+    def __init__(self, id_pessoa, nome, cpf, telefone, email) -> None:
         self.id_pessoa = id_pessoa
+
+        if not Validador.isEmpty(nome):
+            raise ValueError("O nome não pode ser vazio!")
+        else:
+            self.nome = nome
+
+        if Validador.validarCpf(cpf):
+            self.cpf = cpf
+        else:
+            raise ValueError(f"CPF inválido: {cpf}")
+        
+        if Validador.validarTel(telefone):
+            self.telefone = telefone
+        else:
+            raise ValueError(f"Telefone inválido: {telefone}")
+
+        if Validador.validarEmail(email):
+            self.email = email
+        else:
+            raise ValueError(f"E-mail inválido: {email}")
+
+    # GETTERS & SETTERS
 
     def get_id_pessoa(self) -> int:
         return self.id_pessoa
 
-    def set_nome(self, nome: str):
-        self.nome = nome
-
     def get_nome(self) -> str:
         return self.nome
-
-    def set_cpf(self, cpf: str):
-        self.cpf = cpf
 
     def get_cpf(self) -> str:
         return self.cpf
@@ -35,6 +46,8 @@ class Pessoa:
 
     def get_email(self) -> str:
         return self.email
+
+    # OUTROS MÉTODOS
 
     def __str__(self):
         return f"{self.nome} - CPF: {self.cpf}\nTelefone: {self.telefone} | E-mail: {self.email}"
