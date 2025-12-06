@@ -1,6 +1,6 @@
 class Pessoa:
     def __init__(self, id_pessoa: int = None, nome: str = None, cpf: str = None, telefone: str = None, email: str = None) -> None:
-        self.set_id_pessoa(id_leitor)
+        self.set_id_pessoa(id_pessoa)
         self.set_nome(nome)
         self.set_cpf(cpf)
         self.set_telefone(telefone)
