@@ -20,9 +20,11 @@ class MySQLQueries:
         except mysql.connector.Error as err:
             print(f"Erro ao consultar: {err}")
             return []
-        
+
     def execute_query(self, query, params=None):
         try:
+            if params is None:
+                params = ()
             self.cursor.execute(query, params)
             self.cnx.commit()
             return True
