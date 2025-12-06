@@ -14,13 +14,13 @@ INSERT INTO PRODUTO (nome, descricao, preco, estoque) VALUES
 ('Shampoo Pet', 'Shampoo neutro para cães e gatos', 35.00, 15),
 ('Arranhador Gato', 'Torre de sisal para gatos', 200.00, 5);
 
-INSERT INTO ANIMAL (nome, idade, sexo, raca, cor, porte, castrado, vacinado, adotado, id_especie) VALUES
-('Bonitinha', 4, 'F', 'Siamês', 'Marrom/Branca', 'Médio', true, false, true, 13),
-('Rex', 3, 'M', 'Vira-lata', 'Marrom', 'Médio', true, true, false, 14),
-('Mel', 1, 'F', 'Poodle', 'Branca', 'Pequeno', false, true, true, 14),
-('Garfield', 5, 'M', 'Persa', 'Laranja', 'Grande', true, true, false, 13),
-('Pernalonga', 1, 'M', 'Angorá', 'Branco', 'Pequeno', false, false, false, 15),
-('Falquito', 1, 'M', 'N/A', 'Cinza', 'Pequeno', false, false, false, 16);
+INSERT INTO ANIMAL (id_especie, nome, idade, sexo, raca, cor, porte, castrado, vacinado, adotado) VALUES
+(13, 'Bonitinha', 4, 'F', 'Siamês', 'Marrom/Branca', 'Médio', true, false, true),
+(14, 'Rex', 3, 'M', 'Vira-lata', 'Marrom', 'Médio', true, true, false),
+(14, 'Mel', 1, 'F', 'Poodle', 'Branca', 'Pequeno', false, true, true),
+(13, 'Garfield', 5, 'M', 'Persa', 'Laranja', 'Grande', true, true, false),
+(15, 'Pernalonga', 1, 'M', 'Angorá', 'Branco', 'Pequeno', false, false, false),
+(16, 'Falquito', 1, 'M', 'N/A', 'Cinza', 'Pequeno', false, false, false);
 
 INSERT INTO ADOCAO (data_adocao, id_animal, id_pessoa) VALUES
 ('2023-10-25 10:00:00', 21, 6);

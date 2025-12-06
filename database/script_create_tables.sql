@@ -29,6 +29,8 @@ CREATE TABLE PRODUTO (
 -- Animal 
 CREATE TABLE ANIMAL (
     id_animal INT AUTO_INCREMENT PRIMARY KEY,
+    id_especie INT NOT NULL,
+    Foreign Key (id_especie) REFERENCES ESPECIE(id_especie)
     nome VARCHAR(50) NOT NULL,
     idade TINYINT NOT NULL,
     sexo CHARACTER NOT NULL,
@@ -38,9 +40,6 @@ CREATE TABLE ANIMAL (
     castrado BOOLEAN NOT NULL,
     vacinado BOOLEAN NOT NULL,
     adotado BOOLEAN DEFAULT FALSE,
-
-    id_especie INT NOT NULL,
-    Foreign Key (id_especie) REFERENCES ESPECIE(id_especie)
 );
 
 -- Adocao
