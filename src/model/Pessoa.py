@@ -1,28 +1,13 @@
 from src.utils.validador import Validador
 
+
 class Pessoa:
-    def __init__(self, id_pessoa, nome, cpf, telefone, email) -> None:
+    def __init__(self, id_pessoa: int, nome, cpf, telefone, email) -> None:
         self.id_pessoa = id_pessoa
-
-        if not Validador.isEmpty(nome):
-            raise ValueError("O nome não pode ser vazio!")
-        else:
-            self.nome = nome
-
-        if Validador.validarCpf(cpf):
-            self.cpf = cpf
-        else:
-            raise ValueError(f"CPF inválido: {cpf}")
-        
-        if Validador.validarTel(telefone):
-            self.telefone = telefone
-        else:
-            raise ValueError(f"Telefone inválido: {telefone}")
-
-        if Validador.validarEmail(email):
-            self.email = email
-        else:
-            raise ValueError(f"E-mail inválido: {email}")
+        self.nome = nome
+        self.cpf = cpf
+        self.telefone = telefone
+        self.email = email
 
     # GETTERS & SETTERS
 
