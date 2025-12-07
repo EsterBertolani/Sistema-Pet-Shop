@@ -15,6 +15,7 @@ class AnimalDAO(interfaceDAO):
         """
 
     # ================ SALVAR ================
+
     def salvar(self, animal: Animal) -> bool:
         try:
             id_esp = int(animal.get_especie().get_nome())
@@ -40,6 +41,7 @@ class AnimalDAO(interfaceDAO):
         return self.banco.execute_query(sql, values)
 
     # ================ ATUALIZAR ================
+
     def atualizar(self, animal: Animal) -> bool:
         try:
             id_esp = int(animal.get_especie().get_nome())
@@ -80,6 +82,7 @@ class AnimalDAO(interfaceDAO):
         return self.tupleToObj(self.banco.execute_select(self.sql_base_join))
 
     # ================ RECUPERAR ================
+
     def recuperarById(self, id: int) -> Animal | None:
         sql = f"{self.sql_base_join} WHERE A.id_animal = %s"
         values = (id,)
@@ -87,6 +90,7 @@ class AnimalDAO(interfaceDAO):
         return lista[0] if lista else None
 
     # ================ FILTROS ================
+
     def filtrarSTR(self, termo_busca: str) -> List[Animal]:
         sql = f"""
         {self.sql_base_join} 
@@ -122,10 +126,11 @@ class AnimalDAO(interfaceDAO):
         if not lista_tuplas:
             return []
 
-        for row in lista_tuplas:
-            nome_especie_str = str(row[11]) if len(row) > 11 else str(row[1])
-
-            obj_especie = Especie(nome_especie_str)
+        for linha in lista_tuplas:
+            row: Any = linha
+            id_especie = int(row[1])
+            nome_especie = str(row[11]) if len(row) > 11 else "Desconhecido"
+            obj_especie = Especie(id_especie, nome_especie)
 
             animal = Animal(
                 id_animal=int(row[0]),
