@@ -4,10 +4,7 @@ from src.utils.validador import Validador
 class Especie:
 
     def __init__(self, nome) -> None:
-        if not Validador.isEmpty(nome):
-            raise ValueError("O nome não pode ser vazio!")
-        else:
-            self.nome = nome
+        self.nome = nome
 
     def get_nome(self):
         return self.nome

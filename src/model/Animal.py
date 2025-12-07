@@ -16,7 +16,7 @@ class Animal:
         self.vacinado = vacinado
         self.adotado = adotado
 
-        # GETTERS & SETTERS
+    # GETTERS & SETTERS
 
     def get_id_animal(self) -> int:
         return self.id_animal

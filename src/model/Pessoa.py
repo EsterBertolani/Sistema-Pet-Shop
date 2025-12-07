@@ -2,7 +2,7 @@ from src.utils.validador import Validador
 
 
 class Pessoa:
-    def __init__(self, id_pessoa: int, nome, cpf, telefone, email) -> None:
+    def __init__(self, id_pessoa: int, nome: str, cpf: str, telefone: str, email: str) -> None:
         self.id_pessoa = id_pessoa
         self.nome = nome
         self.cpf = cpf
