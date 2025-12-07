@@ -12,14 +12,27 @@ class MySQLQueries:
         except mysql.connector.Error as err:
             print(f"Erro ao conectar com o banco de dados: {err}")
 
-    def execute_select(self, query):
+    def execute_select(self, query, params=None):
         try:
-            self.cursor.execute(query)
+            if params is None:
+                params = ()
+            self.cursor.execute(query, params)
             return self.cursor.fetchall()
 
         except mysql.connector.Error as err:
             print(f"Erro ao consultar: {err}")
             return []
+
+    def execute_insert(self, query, params=None):
+        try:
+            if params is None:
+                params = ()
+            self.cursor.execute(query, params)
+            self.cnx.commit()
+            return self.cursor.lastrowid
+        except mysql.connector.Error as err:
+            print(f"Erro ao inserir: {err}")
+            return None
 
     def execute_query(self, query, params=None):
         try:
@@ -30,6 +43,7 @@ class MySQLQueries:
             return True
         except mysql.connector.Error as err:
             print(f"Erro ao executar: {err}")
+            return False
 
     def close(self):
         self.cursor.close()
