@@ -1,0 +1,143 @@
+Com certeza! Vamos transformar aquela lista de funcionalidades em Caixinhas de Classes (UML) pro seu diagrama no draw.io. 🎨
+
+Lembre-se da regra de ouro de Projeto OO:
+ Atributos (Cadeados 🔒): São os dados. Devem ser privados (- no UML) para ninguém mexer direto.
+ Métodos (Portas 🚪): São as ações. Devem ser públicos (+ no UML) para o sistema usar.
+
+Aqui está o "Raio-X" de cada classe para você desenhar:
+
+---
+
+ 1. Classe Animal 🐶
+Ela é a estrela da adoção. Ela precisa saber quem é e se está livre.
+
+🔒 Atributos (Dados):
+
+id: Inteiro
+
+nome: String
+
+idade: Inteiro
+
+sexo: Caractere (M/F) — troquei 'genero' por 'sexo' que é mais comum em fichas veterinárias
+
+raca: String (Pode deixar String, pois raça varia demais)
+
+cor: String
+
+porte: String (Pequeno, Médio, Grande)
+
+castrado: Booleano ✅
+
+vacinado: Booleano ✅
+
+adotado: Booleano (Começa false)
+
+especie: Especie (Aqui entra sua classe nova!) 🔗
+
+🚪 Métodos (Comportamento):
+
++ marcarComoAdotado()
+
++ estaDisponivel(): boolean
+
++ getDescricaoCompleta(): String (Ex: Retorna "Rex, Cachorro, Vacinado")
+---
+
+ 2. Classe Produto 🛍️
+Representa o item na prateleira. O foco dela é preço e controle de estoque.
+
+🔒 Atributos:
+ id: Inteiro
+ descricao: Texto
+ preco: Decimal (Dinheiro)
+ estoqueAtual: Inteiro
+
+🚪 Métodos:
+ + temEstoque(quantidadeDesejada: Inteiro): Booleano
+     O que faz: Verifica se estoqueAtual >= quantidadeDesejada.
+ + baixarEstoque(quantidade: Inteiro)
+     O que faz: Diminui o número do estoque. Se tentar baixar mais do que tem, esse método deve gritar (lançar erro/exception).
+
+---
+
+ 3. Classe Venda 🧾
+É o "carrinho" ou a nota fiscal. Ela agrupa os itens e sabe o total.
+
+🔒 Atributos:
+ id: Inteiro
+ data: Data/Hora
+ valorTotal: Decimal
+ cliente: Pessoa (Relacionamento)
+ itens: Lista de ItemVenda (Aqui está o segredo!)
+
+🚪 Métodos:
+ + adicionarItem(produto: Produto, quantidade: Inteiro)
+     O que faz: Cria um novo ItemVenda e coloca na lista.
+ + calcularTotal()
+     O que faz: Percorre a lista de itens somando tudo e atualiza o valorTotal.
+ + finalizarVenda()
+     O que faz: Chama o método baixarEstoque() de cada produto da lista. Essa é a mágica da integração! ✨
+
+---
+
+ 4. Classe ItemVenda 📦
+Essa é a classe "ajudante" que fica entre a Venda e o Produto. Ela é necessária porque o preço do produto pode mudar amanhã, mas o preço que você pagou hoje tem que ficar gravado.
+
+🔒 Atributos:
+ produto: Produto
+ quantidade: Inteiro
+ precoUnitarioMomento: Decimal (Cópia do preço na hora da venda)
+ subtotal: Decimal
+
+🚪 Métodos:
+ + calcularSubtotal()
+     O que faz: Multiplica quantidade  precoUnitarioMomento.
+
+---
+
+ 5. Classe Adocao ❤️
+É o contrato de casamento entre a Pessoa e o Animal.
+
+🔒 Atributos:
+ id: Inteiro
+ animal: Animal
+ dono: Pessoa
+ data: Data
+
+🚪 Métodos:
+ + validarAdocao()
+     O que faz: Pergunta para o animal: "Ei, você estaDisponivel()?". Se não estiver, cancela tudo.
+
+---
+
+ 6. Classe Pessoa 🧍
+Pode ser cliente que compra ou alguém que adota.
+
+🔒 Atributos:
+ id: Inteiro
+ nome: Texto
+ cpf: Texto
+ telefone: Texto
+ email: Texto
+
+🚪 Métodos:
+ (Geralmente em sistemas simples, a Pessoa é mais passiva, mas podemos ter validações)
+ + validarCPF()
+
+---
+
+ 🧭 Guia para o seu Draw.io
+
+1.  Crie 6 caixinhas (retângulos divididos em 3 partes: Nome, Atributos, Métodos).
+2.  Copie os dados acima para dentro delas.
+3.  Faça as ligações (linhas):
+     Venda tem um losango (diamante) preenchido 🔸 apontando para ItemVenda (significa composição: a venda é feita de itens).
+     ItemVenda tem uma linha simples apontando para Produto.
+     Adocao tem linhas apontando para Pessoa e Animal.
+
+
+
+Isso vai clarear sua mente absurdamente para a hora de programar.
+
+Quer que eu te explique alguma dessas regras (como a do "baixar estoque") com um exemplo da vida real antes de você desenhar?
